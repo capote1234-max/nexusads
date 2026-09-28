@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visit Link</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; background: #ffffff; }
+.header {
+  background: #000000;
+  color: #ffffff;
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 38px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+.counter-num { color: #ffd700; }
+.content {
+  text-align: center;
+  padding: 40px 20px;
+  color: #888;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+  <div class="header">
+    Redirecting in <span class="counter-num" id="counter">20</span> seconds
+  </div>
+  <div class="content">
+    <p>You will be redirected automatically...</p>
+  </div>
 
+  <script>
+    var params = new URLSearchParams(window.location.search);
+    var targetUrl = params.get('url') || 'https://t.me';
+    var counter = 20;
+    var counterEl = document.getElementById('counter');
+
+    var interval = setInterval(function() {
+      counter = counter - 1;
+      counterEl.textContent = counter;
+      if (counter <= 0) {
+        clearInterval(interval);
+        window.location.href = targetUrl;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
